@@ -7,11 +7,21 @@ app = Flask(__name__)
 def index():
     return '<h1>This is home page</h1>'
 
+# 2 decorators:
+@app.route('/hello')
+@app.route('/hello/<name>')
+def hello(name=None):
+    if name:
+        return f'Hello, {name}!'
+    return 'Hello, stranger!'
+
+
+# different types of vars:
+
 @app.route('/string/<val>')
 def check_string(val):
     if isinstance(val, str):
         return f"I'm string values {val}"
-
 
 
 @app.route('/int/<int:val>')
@@ -26,26 +36,22 @@ def check_float(val):
         return f'I am float value {val}'
 
 
-@app.route('/read_from_file/<path:val>')  # http://127.0.0.1:5000/read_from_file/files/file_for_read.txt
-def get_data_from_file(val):
-    with open(val) as f:
-        data = f.read()
-        return data
-
 @app.route('/uuid/<uuid:val>')
 def check_uuid(val):
     type_val = str(type(val))
     return f"I'm UUID value {val}, type {type_val}"
 
-'2ed29aeb-023d-444b-a576-3d1370a7aa11'
 
 
-@app.route('/hello')
-@app.route('/hello/<name>')
-def hello(name=None):
-    if name:
-        return f'Hello, {name}!'
-    return 'Hello, stranger!'
+# work with files:
+
+# read from files  - path from url:
+@app.route('/read_from_file/<path:val>')  # files/file_for_read.txt
+def get_data_from_file(val):
+    with open(val) as f:
+        return f.read()
+
+
 
 
 if __name__ == "__main__":
