@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Headers</title>
+</head>
+<body>
+<h1>Full list of headers:</h1>
+<ol>
+    {% for k, v in headers_dict %}
+        <li>
+            <p>{{ k }}</p><p>{{ v }}</p>
+        </li>
+    {% endfor %}
+</ol>
+</body>
+</html>

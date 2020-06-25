@@ -1,0 +1,19 @@
+{# {% extends "base.html" %}
+{#{% block title %} Test methods {% endblock %}
+{#{% block content %}
+{#    <ul>
+{#        {% for val in test_methods_list %}
+{#            <li>{{ val }}</li>
+{#        {% endfor  %}
+{#    </ul>
+{#{% endblock %} #}
+
+
+
+{% extends "base.html" %}
+{% block title %} Test methods {% endblock %}
+{% block content %}
+    {% for elem in test_methods_list %}
+        <p>{{ elem }}</p>
+    {% endfor %}
+{% endblock %}

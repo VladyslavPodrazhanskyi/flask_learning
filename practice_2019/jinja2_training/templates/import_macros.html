@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import_macros</title>
+</head>
+<body>
+{% import 'html_with_macros_inside.html' as macros %}
+<ol>
+    {% for element in massive %}
+        {{ macros.render_elements(element) }}
+    {% endfor %}
+</ol>
+</body>
+</html>

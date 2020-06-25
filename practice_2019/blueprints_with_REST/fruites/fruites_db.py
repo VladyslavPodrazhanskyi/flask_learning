@@ -1,0 +1,1 @@
+fruites_db = ["apricot", "cherry", "grapes", "apple"]

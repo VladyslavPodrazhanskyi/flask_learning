@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page has macros</title>
+</head>
+<body>
+
+{# Макрос #}
+{% macro render_elements(element) %}
+<li>{{ element }}</li>
+{% endmacro %}
+
+
+{# Use macros #}
+{% for element in massive %}
+    <ul>
+        {{ render_elements(element) }}
+    </ul>
+{% endfor %}
+</body>
+</html>

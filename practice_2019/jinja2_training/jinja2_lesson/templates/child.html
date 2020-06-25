@@ -1,0 +1,23 @@
+{% extends 'parent.html' %}
+{% block content %}
+    {{ super() }}
+    <h1>This is start of my Child block</h1>
+    <div class="container">
+      <p>My string: {{my_string}}</p>
+      <p>Value from the list: {{my_list[3]}}</p>
+      <p>Loop through the list:</p>
+    {{ super() }}
+      <ul>
+        {% for n in my_list %}
+            {% if n%2==0 %}
+                <li>{{n}}</li>
+            {% else %}
+                <li>{{ n**3 }}</li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+    {% block footer %}{{ super() }}{% endblock %}
+    </div>
+    <h1>This is end of my Child block</h1>
+    {{ super() }}
+    {% endblock %}

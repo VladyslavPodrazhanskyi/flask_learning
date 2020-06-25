@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Hello, World</h1>
+{% include 'include.html' %}
+<h4>Current date/time: {{ current_time|my_filter }}</h4>
+<h4>Generated list: {{ value }}</h4>
+<h4>Sum of the list: {{ value|sum_list_filter}}</h4>
+</body>
+</html>

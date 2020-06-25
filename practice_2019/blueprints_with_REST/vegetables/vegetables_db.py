@@ -1,0 +1,1 @@
+vegetables_db = ["potato", "cucumber", "carrot", "tomatto"]

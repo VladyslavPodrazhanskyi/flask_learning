@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<h1>Hello, {{ name }} !</h1>
+{% if age %}
+    <p>Age = {{ age|round }}</p>
+{% endif %}
+{% with animal='cat' %}   {# временное присвоение значения переменной animal #}
+<p>Animal: {{ animal }}</p>
+{% endwith %}
+</body>
+</html>
