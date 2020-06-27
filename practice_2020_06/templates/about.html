@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>about</title>
+</head>
+<body>
+<h1>This is about page</h1>
+{% if request.args.get('name') %}
+    <p>Name = {{ request.args.get('name') }}</p>
+{% endif %}
+</body>
+</html>
