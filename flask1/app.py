@@ -15,8 +15,9 @@ app.config['SECRET_KEY'] = b'\x9e|\x95\xe7\xa3O\xba\x12\x16 \x1d\x96\xd6\x0f\xfc
 
 @app.route('/')
 def index():
-    pprint(dir(app))
+    # pprint(dir(app))
     # print(dir(request))     # request.__dict__  http://jsonviewer.stack.hu/
+    print(os.environ['TEST_VAR_KEY'])
     return '<h1>This is index page</h1>'
 
 # 2 decorators:
@@ -119,12 +120,19 @@ def cookie_to_browser():
     return response
 
 # use session:
+from datetime import timedelta
+
+app.permanent_session_lifetime = timedelta(seconds=10)
 
 @app.route('/test_session')
 def test_session():
     session['sessin_key'] = 'session_value'
     session['name'] = request.args.get('name')
-    return "session key and value added"
+    session.permanent = True
+    session_dict = dict()
+    for k, v in session.items():
+        session_dict[k] = v
+    return jsonify(session_dict)
 
 #logging  - документирвоание ошибок.
 # https://docs.python.org/3/library/logging.html

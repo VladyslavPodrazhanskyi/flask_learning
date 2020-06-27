@@ -1,4 +1,3 @@
-Create Flask application with 3 modules: Main, Fruits and Vegetables.
 
 On the main page must be 2 links, Fruits and Vegetables.
 
