@@ -1,16 +1,33 @@
 from flask import Flask, request
-from flask_restful import Api, Resource
+from flask_restful import Api, Resource, reqparse
 app = Flask(__name__)
 
 api = Api(app)
 
+parser_core = reqparse.RequestParser(bundle_errors=True)
+parser_core.add_argument('page', required=True, type=int)  # help="message" help="incorrect type of page"
+parser_core.add_argument('name', type=str, action='append') # without action='append'
+#  - переменной name- присваивается только первое значение аргумента.
+# http://127.0.0.1:5000?page=34&page=45&page=20&name=Igor&name=Nick
+# {'page': 34, 'name': ['Igor', 'Nick']}
+parser_core.add_argument('from-header', required=True, type=int, location='headers')
+parser_core.add_argument('cookiesargs', required=True, type=int, location='cookies')
+parser_core.add_argument('bodyarg', type=int, location='form')
+
+# Home
+
 class CoreResource(Resource):
     def get(self):
-        return {'key1': 'value1'}, 301, {'customs_header': 'header_value'}
+        args = parser_core.parse_args(strict=True) # restricts other arguments ( not included in parser).
+        print(args)
+        return {'key1': 'value1'}, 200, {'customs_header': 'header_value'}
 
     def post(self):
+        args = parser_core.parse_args(strict=True)
+        print(args)
         return 'post'
 
+# company restful service
 
 companies = ['Amazon', 'Apple', 'Microsoft']
 
@@ -41,10 +58,9 @@ class Companies(Resource):
         return {'result': 'value is absent'}
 
 
-
-
 api.add_resource(CoreResource, '/')
 api.add_resource(Companies, '/companies', '/companies/<value>')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
