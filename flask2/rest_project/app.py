@@ -13,6 +13,7 @@ parser_core.add_argument('name', type=str, action='append') # without action='ap
 parser_core.add_argument('from-header', required=True, type=int, location='headers')
 parser_core.add_argument('cookiesargs', required=True, type=int, location='cookies')
 parser_core.add_argument('bodyarg', type=int, location='form')
+parser_core.add_argument('cbargs', type=int, location=['form', 'cookies', 'args'], action='append')
 
 # Home
 
